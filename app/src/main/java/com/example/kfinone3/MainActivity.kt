@@ -420,7 +420,7 @@ fun MainScreen() {
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .padding(start = 32.dp)
-                                        ) {
+                                            ) {
                                             TextButton(
                                                 onClick = { showDSAPanel = true },
                                                 modifier = Modifier
@@ -837,64 +837,180 @@ fun MainScreen() {
                                 // Top Row
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                    horizontalArrangement = Arrangement.SpaceEvenly
                                 ) {
-                                    repeat(4) { index ->
-                                        Card(
+                                    // Life Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Life Insurance",
                                             modifier = Modifier
-                                                .weight(1f)
-                                                .aspectRatio(1f),
-                                            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                                            colors = CardDefaults.cardColors(
-                                                containerColor = Color(0xFFF5F5F5)
-                                            )
-                                        ) {
-                                            Box(
-                                                modifier = Modifier
-                                                    .fillMaxSize()
-                                                    .padding(8.dp),
-                                                contentAlignment = Alignment.Center
-                                            ) {
-                                                Image(
-                                                    painter = painterResource(id = R.drawable.logo),
-                                                    contentDescription = "Insurance Product ${index + 1}",
-                                                    modifier = Modifier.fillMaxSize(),
-                                                    contentScale = ContentScale.Fit
-                                                )
-                                            }
-                                        }
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Life Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+
+                                    // Health Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Health Insurance",
+                                            modifier = Modifier
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Health Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+
+                                    // Vehicle Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Vehicle Insurance",
+                                            modifier = Modifier
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Vehicle Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+
+                                    // Property Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Property Insurance",
+                                            modifier = Modifier
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Property Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
                                     }
                                 }
 
                                 // Bottom Row
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                    horizontalArrangement = Arrangement.SpaceEvenly
                                 ) {
-                                    repeat(4) { index ->
-                                        Card(
+                                    // Travel Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Travel Insurance",
                                             modifier = Modifier
-                                                .weight(1f)
-                                                .aspectRatio(1f),
-                                            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                                            colors = CardDefaults.cardColors(
-                                                containerColor = Color(0xFFF5F5F5)
-                                            )
-                                        ) {
-                                            Box(
-                                                modifier = Modifier
-                                                    .fillMaxSize()
-                                                    .padding(8.dp),
-                                                contentAlignment = Alignment.Center
-                                            ) {
-                                                Image(
-                                                    painter = painterResource(id = R.drawable.logo),
-                                                    contentDescription = "Insurance Product ${index + 5}",
-                                                    modifier = Modifier.fillMaxSize(),
-                                                    contentScale = ContentScale.Fit
-                                                )
-                                            }
-                                        }
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Travel Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+
+                                    // Business Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Business Insurance",
+                                            modifier = Modifier
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Business Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+
+                                    // Education Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Education Insurance",
+                                            modifier = Modifier
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Education Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+
+                                    // Pet Insurance
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.logo),
+                                            contentDescription = "Pet Insurance",
+                                            modifier = Modifier
+                                                .size(48.dp)
+                                                .padding(4.dp),
+                                            contentScale = ContentScale.Fit
+                                        )
+                                        Text(
+                                            text = "Pet Insurance",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
                                     }
                                 }
                             }
