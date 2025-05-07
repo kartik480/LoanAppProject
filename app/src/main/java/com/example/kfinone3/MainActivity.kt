@@ -2288,6 +2288,11 @@ fun LoanScreen(
 fun AccountScreen(
     onBackClick: () -> Unit
 ) {
+    var showLanguagePanel by remember { mutableStateOf(false) }
+    var showAboutUsPanel by remember { mutableStateOf(false) }
+    var showLegalPanel by remember { mutableStateOf(false) }
+    var showHelpPanel by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -2483,7 +2488,7 @@ fun AccountScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /* Handle language change */ }
+                        .clickable { showLanguagePanel = true }
                         .padding(vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
@@ -2505,7 +2510,7 @@ fun AccountScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /* Handle about us */ }
+                        .clickable { showAboutUsPanel = true }
                         .padding(vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
@@ -2527,7 +2532,7 @@ fun AccountScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /* Handle legal */ }
+                        .clickable { showLegalPanel = true }
                         .padding(vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
@@ -2549,7 +2554,7 @@ fun AccountScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /* Handle help */ }
+                        .clickable { showHelpPanel = true }
                         .padding(vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
@@ -2622,6 +2627,358 @@ fun AccountScreen(
             )
         ) {
             Text("Logout")
+        }
+    }
+
+    if (showLanguagePanel) {
+        LanguagePanel(onDismiss = { showLanguagePanel = false })
+    }
+    if (showAboutUsPanel) {
+        AboutUsPanel(onDismiss = { showAboutUsPanel = false })
+    }
+    if (showLegalPanel) {
+        LegalPanel(onDismiss = { showLegalPanel = false })
+    }
+    if (showHelpPanel) {
+        HelpPanel(onDismiss = { showHelpPanel = false })
+    }
+}
+
+@Composable
+fun LanguagePanel(
+    onDismiss: () -> Unit
+) {
+    val languages = listOf("English", "Hindi", "Tamil", "Telugu", "Kannada", "Malayalam", "Bengali", "Marathi")
+    var selectedLanguage by remember { mutableStateOf("English") }
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            ) {
+                Text(
+                    text = "Select Language",
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
+
+                languages.forEach { language ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { selectedLanguage = language }
+                            .padding(vertical = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = language,
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        RadioButton(
+                            selected = language == selectedLanguage,
+                            onClick = { selectedLanguage = language }
+                        )
+                    }
+                    if (language != languages.last()) {
+                        Divider(modifier = Modifier.padding(vertical = 8.dp))
+                    }
+                }
+
+                Button(
+                    onClick = onDismiss,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp)
+                ) {
+                    Text("Apply")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun AboutUsPanel(
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(24.dp)
+            ) {
+                // Company Logo
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Company Logo",
+                    modifier = Modifier
+                        .size(120.dp)
+                        .align(Alignment.CenterHorizontally)
+                        .padding(bottom = 24.dp)
+                )
+
+                Text(
+                    text = "About KFinOne",
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                Text(
+                    text = "KFinOne is a leading financial technology company dedicated to making financial services accessible to everyone. Our mission is to empower individuals and businesses with innovative financial solutions.",
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
+
+                // Key Features
+                Text(
+                    text = "Our Key Features",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                val features = listOf(
+                    "Easy Loan Application",
+                    "Quick Approval Process",
+                    "Competitive Interest Rates",
+                    "24/7 Customer Support",
+                    "Secure Transactions"
+                )
+
+                features.forEach { feature ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Default.ArrowBack,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(20.dp)
+                                .rotate(90f),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = feature,
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
+
+                Button(
+                    onClick = onDismiss,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp)
+                ) {
+                    Text("Close")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun LegalPanel(
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(24.dp)
+            ) {
+                Text(
+                    text = "Legal Information",
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
+
+                val legalSections = listOf(
+                    "Terms of Service" to "By using our services, you agree to our terms and conditions...",
+                    "Privacy Policy" to "We are committed to protecting your privacy and personal information...",
+                    "Data Protection" to "Your data security is our top priority. We implement industry-standard security measures...",
+                    "Cookie Policy" to "We use cookies to enhance your browsing experience and analyze our traffic...",
+                    "Licenses" to "All content and materials are protected by copyright and other intellectual property laws..."
+                )
+
+                legalSections.forEach { (title, content) ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = title,
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            )
+                            Text(
+                                text = content,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color.Gray
+                            )
+                        }
+                    }
+                }
+
+                Button(
+                    onClick = onDismiss,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp)
+                ) {
+                    Text("Close")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun HelpPanel(
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(24.dp)
+            ) {
+                Text(
+                    text = "Help & Support",
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.padding(bottom = 24.dp)
+                )
+
+                // FAQ Section
+                Text(
+                    text = "Frequently Asked Questions",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                val faqs = listOf(
+                    "How do I apply for a loan?" to "You can apply for a loan through our mobile app or website...",
+                    "What documents do I need?" to "You'll need your ID proof, address proof, and income documents...",
+                    "How long does approval take?" to "Most loan applications are approved within 24-48 hours...",
+                    "How can I track my application?" to "You can track your application status in the app...",
+                    "What are the interest rates?" to "Interest rates vary based on loan type and credit score..."
+                )
+
+                faqs.forEach { (question, answer) ->
+                    var expanded by remember { mutableStateOf(false) }
+                    
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                            .clickable { expanded = !expanded },
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = question,
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                                Icon(
+                                    Icons.Default.ArrowBack,
+                                    contentDescription = "Expand",
+                                    modifier = Modifier.rotate(if (expanded) 270f else 90f)
+                                )
+                            }
+                            if (expanded) {
+                                Text(
+                                    text = answer,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = Color.Gray,
+                                    modifier = Modifier.padding(top = 8.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Contact Support
+                Text(
+                    text = "Contact Support",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(vertical = 16.dp)
+                )
+
+                Button(
+                    onClick = { /* Handle email support */ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)
+                ) {
+                    Text("Email Support")
+                }
+
+                Button(
+                    onClick = { /* Handle call support */ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)
+                ) {
+                    Text("Call Support")
+                }
+
+                Button(
+                    onClick = onDismiss,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                ) {
+                    Text("Close")
+                }
+            }
         }
     }
 }
