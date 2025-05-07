@@ -180,9 +180,9 @@ fun MainScreen() {
     
     // Add your JPEG images to res/drawable folder first
     val carouselImages = listOf(
-        R.drawable.logo,  // Using logo as default image
-        R.drawable.logo,
-        R.drawable.logo
+        R.drawable.image1,  // Using logo as default image
+        R.drawable.image2,
+        R.drawable.image3
     )
 
     val pagerState = rememberPagerState()
