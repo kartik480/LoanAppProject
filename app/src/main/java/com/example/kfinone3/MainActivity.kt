@@ -826,12 +826,78 @@ fun MainScreen() {
                             Text(
                                 text = "Our Insurance Products",
                                 style = MaterialTheme.typography.titleLarge,
-                                modifier = Modifier.padding(bottom = 8.dp)
+                                modifier = Modifier.padding(bottom = 16.dp)
                             )
-                            Text(
-                                text = "Protect what matters most with our comprehensive insurance solutions. From life insurance to health coverage, we offer tailored protection plans for you and your loved ones.",
-                                style = MaterialTheme.typography.bodyMedium
-                            )
+
+                            // 2x4 Grid of Insurance Products
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalArrangement = Arrangement.spacedBy(16.dp)
+                            ) {
+                                // Top Row
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    repeat(4) { index ->
+                                        Card(
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .aspectRatio(1f),
+                                            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+                                            colors = CardDefaults.cardColors(
+                                                containerColor = Color(0xFFF5F5F5)
+                                            )
+                                        ) {
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxSize()
+                                                    .padding(8.dp),
+                                                contentAlignment = Alignment.Center
+                                            ) {
+                                                Image(
+                                                    painter = painterResource(id = R.drawable.logo),
+                                                    contentDescription = "Insurance Product ${index + 1}",
+                                                    modifier = Modifier.fillMaxSize(),
+                                                    contentScale = ContentScale.Fit
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Bottom Row
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    repeat(4) { index ->
+                                        Card(
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .aspectRatio(1f),
+                                            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+                                            colors = CardDefaults.cardColors(
+                                                containerColor = Color(0xFFF5F5F5)
+                                            )
+                                        ) {
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxSize()
+                                                    .padding(8.dp),
+                                                contentAlignment = Alignment.Center
+                                            ) {
+                                                Image(
+                                                    painter = painterResource(id = R.drawable.logo),
+                                                    contentDescription = "Insurance Product ${index + 5}",
+                                                    modifier = Modifier.fillMaxSize(),
+                                                    contentScale = ContentScale.Fit
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
 
