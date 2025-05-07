@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">kfinone3</string>
+    <string name="menu_become_dsa">BECOME A DSA</string>
+    <string name="menu_loans">LOANS</string>
+    <string name="menu_investments">INVESTMENTS</string>
+    <string name="menu_insurance">INSURANCE</string>
+    <string name="menu_login">LOGIN</string>
+</resources>
