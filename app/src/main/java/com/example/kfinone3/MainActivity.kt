@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -35,6 +34,7 @@ import androidx.compose.ui.window.Dialog
 import com.example.kfinone3.ui.theme.Kfinone3Theme
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.delay
+import androidx.compose.ui.draw.rotate
 
 @Composable
 fun WelcomePanel(
@@ -277,7 +277,7 @@ fun MainScreen() {
                                     .padding(vertical = 8.dp)
                             ) {
                                 MenuItem(
-                                    text = stringResource(R.string.menu_become_dsa),
+                                    text = "Become a DSA",
                                     onClick = { showDSAPanel = true }
                                 )
                                 Divider(color = Color(0xFFE0E0E0))
@@ -292,7 +292,7 @@ fun MainScreen() {
                                             .padding(vertical = 8.dp, horizontal = 16.dp)
                                     ) {
                                         Text(
-                                            text = stringResource(R.string.menu_loans),
+                                            text = "Loans",
                                             style = MaterialTheme.typography.bodyLarge,
                                             modifier = Modifier.fillMaxWidth()
                                         )
@@ -351,7 +351,7 @@ fun MainScreen() {
                                             .padding(vertical = 8.dp, horizontal = 16.dp)
                                     ) {
                                         Text(
-                                            text = stringResource(R.string.menu_investments),
+                                            text = "Investments",
                                             style = MaterialTheme.typography.bodyLarge,
                                             modifier = Modifier.fillMaxWidth()
                                         )
@@ -410,7 +410,7 @@ fun MainScreen() {
                                             .padding(vertical = 8.dp, horizontal = 16.dp)
                                     ) {
                                         Text(
-                                            text = stringResource(R.string.menu_insurance),
+                                            text = "Insurance",
                                             style = MaterialTheme.typography.bodyLarge,
                                             modifier = Modifier.fillMaxWidth()
                                         )
@@ -469,7 +469,7 @@ fun MainScreen() {
                                             .padding(vertical = 8.dp, horizontal = 16.dp)
                                     ) {
                                         Text(
-                                            text = stringResource(R.string.menu_login),
+                                            text = "Login",
                                             style = MaterialTheme.typography.bodyLarge,
                                             modifier = Modifier.fillMaxWidth()
                                         )
@@ -2183,6 +2183,7 @@ fun AccountScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
+            .verticalScroll(rememberScrollState())  // Make the entire screen scrollable
             .padding(16.dp)
     ) {
         // Back Button
@@ -2368,32 +2369,13 @@ fun AccountScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-            ) {
-                // Notification Settings
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Notifications",
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                    Switch(
-                        checked = true,
-                        onCheckedChange = { /* Handle notification toggle */ }
-                    )
-                }
-
-                Divider(modifier = Modifier.padding(vertical = 8.dp))
-
-                // Language Settings
+                // Language
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                        .clickable { /* Handle language change */ }
+                        .padding(vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -2401,30 +2383,120 @@ fun AccountScreen(
                         text = "Language",
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    Text(
-                        text = "English",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Gray
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = "Arrow",
+                        modifier = Modifier.rotate(180f)
                     )
                 }
 
                 Divider(modifier = Modifier.padding(vertical = 8.dp))
 
-                // Theme Settings
+                // About Us
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                        .clickable { /* Handle about us */ }
+                        .padding(vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Dark Mode",
+                        text = "About Us",
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    Switch(
-                        checked = false,
-                        onCheckedChange = { /* Handle theme toggle */ }
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = "Arrow",
+                        modifier = Modifier.rotate(180f)
+                    )
+                }
+
+                Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+                // Legal
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* Handle legal */ }
+                        .padding(vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Legal",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = "Arrow",
+                        modifier = Modifier.rotate(180f)
+                    )
+                }
+
+                Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+                // Help
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* Handle help */ }
+                        .padding(vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Help",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = "Arrow",
+                        modifier = Modifier.rotate(180f)
+                    )
+                }
+
+                Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+                // Communication Preferences
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* Handle communication preferences */ }
+                        .padding(vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Communication Preferences",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = "Arrow",
+                        modifier = Modifier.rotate(180f)
+                    )
+                }
+
+                Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+                // Lending Partner
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { /* Handle lending partner */ }
+                        .padding(vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Lending Partner",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = "Arrow",
+                        modifier = Modifier.rotate(180f)
                     )
                 }
             }
