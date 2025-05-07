@@ -1145,7 +1145,7 @@ fun MainScreen() {
                             }
                         }
 
-                        // Horizontal Scrollable Image Frames
+                        // Featured Products section
                         Text(
                             text = "Featured Products",
                             style = MaterialTheme.typography.titleLarge,
@@ -1184,6 +1184,68 @@ fun MainScreen() {
                                             contentScale = ContentScale.Fit
                                         )
                                     }
+                                }
+                            }
+                        }
+
+                        // EMI Calculator Section
+                        Text(
+                            text = "EMI Calculator",
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.padding(vertical = 16.dp)
+                        )
+                        
+                        Row(
+                            modifier = Modifier
+                                .horizontalScroll(rememberScrollState())
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            // 5 Image Frames with names
+                            val emiTypes = listOf(
+                                "Personal Loan",
+                                "Home Loan",
+                                "Car Loan",
+                                "Business Loan",
+                                "Education Loan"
+                            )
+                            
+                            emiTypes.forEachIndexed { index, name ->
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    modifier = Modifier.width(100.dp)
+                                ) {
+                                    Card(
+                                        modifier = Modifier
+                                            .size(80.dp),
+                                        elevation = CardDefaults.cardElevation(
+                                            defaultElevation = 4.dp
+                                        ),
+                                        colors = CardDefaults.cardColors(
+                                            containerColor = Color.White
+                                        ),
+                                        shape = CircleShape
+                                    ) {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxSize()
+                                                .padding(12.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Image(
+                                                painter = painterResource(id = R.drawable.logo),
+                                                contentDescription = "EMI Calculator ${index + 1}",
+                                                modifier = Modifier.fillMaxSize(),
+                                                contentScale = ContentScale.Fit
+                                            )
+                                        }
+                                    }
+                                    Text(
+                                        text = name,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        textAlign = TextAlign.Center,
+                                        modifier = Modifier.padding(top = 8.dp)
+                                    )
                                 }
                             }
                         }
