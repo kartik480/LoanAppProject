@@ -667,7 +667,7 @@ fun MainScreen() {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.logo),  // Replace with your image
+                                painter = painterResource(id = R.drawable.logo),
                                 contentDescription = "Frame Image",
                                 modifier = Modifier
                                     .size(200.dp)
@@ -675,15 +675,62 @@ fun MainScreen() {
                                 contentScale = ContentScale.Fit
                             )
                             Text(
-                                text = "Welcome to KFinOne",
-                                style = MaterialTheme.typography.headlineSmall,
+                                text = "Credit Scores",
+                                style = MaterialTheme.typography.titleLarge,
                                 modifier = Modifier.padding(top = 16.dp)
                             )
-                            Text(
-                                text = "Your Financial Partner",
-                                style = MaterialTheme.typography.bodyLarge,
-                                modifier = Modifier.padding(top = 8.dp)
-                            )
+                            
+                            // Credit Score Slider
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 16.dp)
+                            ) {
+                                // Progress Bar
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(12.dp)
+                                        .background(
+                                            color = Color(0xFFE0E0E0),
+                                            shape = RoundedCornerShape(6.dp)
+                                        )
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.75f) // 75% progress
+                                            .height(12.dp)
+                                            .background(
+                                                color = Color(0xFF4CAF50), // Green color
+                                                shape = RoundedCornerShape(6.dp)
+                                            )
+                                    )
+                                }
+                                
+                                // Score Labels
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 8.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Text(
+                                        text = "300",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color.Gray
+                                    )
+                                    Text(
+                                        text = "750",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color(0xFF4CAF50)
+                                    )
+                                    Text(
+                                        text = "900",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color.Gray
+                                    )
+                                }
+                            }
                         }
                     }
 
